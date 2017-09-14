@@ -5,12 +5,13 @@ import android.view.View;
 
 /**
  * 滑动效果
+ * {@link ViewPager.PageTransformer}
  * Created by gzh on 2017-9-13.
  */
 
 public class ItemTransformer implements ViewPager.PageTransformer {
     private int maxOffsetX;//x轴最大偏移量
-    private float scale;//缩放度
+    private float scale;//缩放比例
 
     private ViewPager viewPager;
 

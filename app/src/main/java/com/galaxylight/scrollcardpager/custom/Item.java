@@ -5,41 +5,42 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.io.Serializable;
+import android.widget.ImageView;
 
 /**
  * Item
+ * {@link BaseItem<T>}
  * Created by gzh on 2017-9-13.
  */
 
-public class Item<T extends Serializable> extends BaseItem<T> {
+public class Item<T> extends BaseItem<T> {
+    private T data;
+    private int position;
+
     @SuppressWarnings("unchecked")
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Bundle bundle = getArguments();
-        ItemController<T> controller = (ItemController<T>) bundle.getSerializable(ITEM_CONTROLLER);
-        int position = bundle.getInt(ITEM_POSITION);
-        T data = (T) bundle.getSerializable(ITEM_DATA);
         if (controller == null) {
-            throw new RuntimeException("controller is not init !");
+            //ItemController未初始化
+            throw new RuntimeException("ItemController is not init");
         }
-        return controller.setLogic(context, data, position, mode);
+        View view = controller.setLogic(context, data, position, mode);
+        if (!(view.getRootView() instanceof ImageView)) {
+            //ItemView只支持ImageView
+            throw new RuntimeException("The ItemView only support ImageView");
+        }
+        return view;
     }
 
     /**
      * 初始化数据
-     * @param data 数据
-     * @param position 位置
+     *
+     * @param data     数据（适配器所需的数据{@link ScrollCardPagerAdapter#items}）
+     * @param position 位置（数据再适配器集合中的下标）
      */
     public void initData(T data, int position) {
-        Bundle bundle = getArguments();
-        if (bundle == null) {
-            bundle = new Bundle();
-            setArguments(bundle);
-        }
-        bundle.putInt(ITEM_POSITION, position);
-        bundle.putSerializable(ITEM_DATA, data);
+        this.data = data;
+        this.position = position;
     }
 }

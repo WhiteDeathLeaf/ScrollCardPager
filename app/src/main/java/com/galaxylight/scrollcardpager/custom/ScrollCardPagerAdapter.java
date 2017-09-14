@@ -9,13 +9,14 @@ import java.util.List;
 
 /**
  * ScrollCardPager 适配器
+ * {@link FragmentStatePagerAdapter}
  * Created by gzh on 2017-9-13.
  */
 
-public class ScrollCardPagerAdapter extends FragmentStatePagerAdapter {
+class ScrollCardPagerAdapter extends FragmentStatePagerAdapter {
     private static final int COUNT = Integer.MAX_VALUE;
 
-    private List<Item> items;
+    private List<Item> items;//数据集合
     private boolean isLoop;//是否循环
 
     public ScrollCardPagerAdapter(FragmentManager fm, List<Item> items, boolean isLoop) {
@@ -24,6 +25,11 @@ public class ScrollCardPagerAdapter extends FragmentStatePagerAdapter {
         this.isLoop = isLoop;
     }
 
+    /**
+     * 获取数据数量
+     *
+     * @return 数据数量
+     */
     private int getSize() {
         return items == null ? 0 : items.size();
     }
@@ -40,7 +46,8 @@ public class ScrollCardPagerAdapter extends FragmentStatePagerAdapter {
 
     /**
      * 设置效果模式
-     * @param mode
+     *
+     * @param mode 模式{@link ScrollCardPager.Mode}
      */
     public void setMode(@ScrollCardPager.Mode int mode) {
         if (items == null || items.isEmpty()) return;
