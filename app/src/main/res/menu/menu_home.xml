@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_url"
+        android:title="网络图片"/>
+    <item
+        android:id="@+id/home_local"
+        android:title="本地图片"/>
+    <item
+        android:id="@+id/home_phone"
+        android:title="手机图片"/>
+</menu>

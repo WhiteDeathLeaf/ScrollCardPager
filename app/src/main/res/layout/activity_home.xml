@@ -9,5 +9,6 @@
         android:id="@+id/scp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:item_loop="true"/>
+        app:item_loop="true"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

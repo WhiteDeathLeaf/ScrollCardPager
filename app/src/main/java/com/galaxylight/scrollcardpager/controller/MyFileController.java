@@ -1,12 +1,12 @@
 package com.galaxylight.scrollcardpager.controller;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.galaxylight.scrollcardpager.listener.OnCardItemClickListener;
 import com.galaxylight.scrollcardpager.R;
 import com.galaxylight.scrollcardpager.custom.ItemController;
 import com.galaxylight.scrollcardpager.custom.ScrollCardPager;
@@ -15,10 +15,11 @@ import java.io.File;
 
 /**
  * 自定义控制器
+ * T File
  * Created by Administrator on 2017-9-14.
  */
 
-public class MyController implements ItemController<File> {
+public class MyFileController implements ItemController<File> {
     @Override
     public View setLogic(final Context context, File data, final int position, @ScrollCardPager.Mode int mode) {
         View view = LayoutInflater.from(context).inflate(R.layout.pager_item, null);
@@ -34,10 +35,6 @@ public class MyController implements ItemController<File> {
     }
 
     private OnCardItemClickListener listener;
-
-    public interface OnCardItemClickListener {
-        void clicked(int position);
-    }
 
     public void setOnCardItemClickListener(OnCardItemClickListener listener) {
         this.listener = listener;
